@@ -12,7 +12,7 @@ void randomizeArrays(array<array<int,9>, 9000>& array_i, int i) {
 	// A random number in the range of 1 to 100,000 is assigned.
 	int bound = i * 1000;
 	for(int j=0;j < bound;j++) {
-		array_i[j][i - 1] = rand() % 100000 + 1;
+		array_i[j][i - 1] = rand() % 10000 + 1;
 	}
 }
 
