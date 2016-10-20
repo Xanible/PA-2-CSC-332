@@ -150,8 +150,8 @@ int main(int argc, char** argv) {
 	test(array_i);
 	
 	cout << "Hello! This is a console application." << endl;
-	cout << "Press 1 to see array 1\n"
-		<< "Press 2 to see array 2\n"
+	cout << "Press 1 to see array first\n"
+		<< "Press 2 to see array second\n"
 		<< "Press 3 to see the third array\n"
 		<< "Press 4 to see the fourth array\n"
 		<< "Press 5 to see the fifth array\n"
