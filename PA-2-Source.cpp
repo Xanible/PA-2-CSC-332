@@ -81,7 +81,7 @@ double mergesortTimed(array<array<int,9>, 9000>& array_i, int i) {
 	auto start = std::chrono::high_resolution_clock::now();
 	
 	// perform the mergesort!
-	mergesort(array_i, (i - 1), 0, (i*1000));
+	mergesort(array_i, (i - 1), 0, (i*1000) - 1);
 	
 	// stop chrono timer
 	auto finish = std::chrono::high_resolution_clock::now();
