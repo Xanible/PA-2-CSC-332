@@ -64,8 +64,14 @@ void merge(int array[], const int low, const int mid, const int length)
 	delete[] b;
 
 void mergesort(array<array<int,9>, 9000>& array_i, int i) {
-	// I need teh mergesort code herez
-	// Get rid of these comments when you do please
+	int mid;
+	if (low < length)
+	{
+		mid = (low + length) / 2;
+		merge_sort(array, low, mid);
+		merge_sort(array, mid + 1, length);
+		merge(array, low, mid, length);
+	}
 }
 
 double mergesortTimed(array<array<int,9>, 9000>& array_i, int i) {
