@@ -16,6 +16,53 @@ void randomizeArrays(array<array<int,9>, 9000>& array_i, int i) {
 	}
 }
 
+void merge(int array[], const int low, const int mid, const int length)
+{
+	// Variables declaration. 
+	int * b = new int[length + 1 - low];
+	int h, i, j, k;
+	h = low;
+	i = 0;
+	j = mid + 1;
+	// Merges the two array's into b[] until the first one is finish
+	while ((h <= mid) && (j <= length))
+	{
+		if (array[h] <= array[j])
+		{
+			b[i] = array[h];
+			h++;
+		}
+		else
+		{
+			b[i] = array[j];
+			j++;
+		}
+		i++;
+	}
+	// Completes the array filling in it the missing values
+	if (h>mid)
+	{
+		for (k = j; k <= length; k++)
+		{
+			b[i] = array[k];
+			i++;
+		}
+	}
+	else
+	{
+		for (k = h; k <= mid; k++)
+		{
+			b[i] = array[k];
+			i++;
+		}
+	}
+	// Prints into the original array
+	for (k = 0; k <= length - low; k++)
+	{
+		array[k + low] = b[k];
+	}
+	delete[] b;
+
 void mergesort(array<array<int,9>, 9000>& array_i, int i) {
 	// I need teh mergesort code herez
 	// Get rid of these comments when you do please
