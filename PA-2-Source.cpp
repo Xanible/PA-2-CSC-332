@@ -16,35 +16,36 @@ void randomizeArrays(array<array<int,9>, 9000>& array_i, int i) {
 	}
 }
 
-void merge(int array[], const int low, const int mid, const int length)
+void merge (array<array<int,9>, 9000>& array_i, int i,
+ 			const int low, const int mid, const int length)
 {
 	// Variables declaration. 
-	int * b = new int[length + 1 - low];
-	int h, i, j, k;
+	int b [length + 1 - low];
+	int h, l, j, k;
 	h = low;
-	i = 0;
+	l = 0;
 	j = mid + 1;
 	// Merges the two array's into b[] until the first one is finish
 	while ((h <= mid) && (j <= length))
 	{
-		if (array[h] <= array[j])
+		if (array_i[h][i] <= array_i[j][i])
 		{
-			b[i] = array[h];
+			b[l] = array_i[h][i];
 			h++;
 		}
 		else
 		{
-			b[i] = array[j];
+			b[l] = array_i[j][i];
 			j++;
 		}
-		i++;
+		l++;
 	}
 	// Completes the array filling in it the missing values
 	if (h>mid)
 	{
 		for (k = j; k <= length; k++)
 		{
-			b[i] = array[k];
+			b[l] = array_i[k][i];
 			i++;
 		}
 	}
@@ -52,25 +53,26 @@ void merge(int array[], const int low, const int mid, const int length)
 	{
 		for (k = h; k <= mid; k++)
 		{
-			b[i] = array[k];
+			b[l] = array_i[k][i];
 			i++;
 		}
 	}
 	// Prints into the original array
 	for (k = 0; k <= length - low; k++)
 	{
-		array[k + low] = b[k];
+		array_i[k + low][i] = b[k];
 	}
-	delete[] b;
+}
 
-void mergesort(array<array<int,9>, 9000>& array_i, int i) {
+void mergesort (array<array<int,9>, 9000>& array_i, int i,
+				int low, int length ) {
 	int mid;
 	if (low < length)
 	{
 		mid = (low + length) / 2;
-		merge_sort(array, low, mid);
-		merge_sort(array, mid + 1, length);
-		merge(array, low, mid, length);
+		mergesort(array_i, i, low, mid);
+		mergesort(array_i, i, mid + 1, length);
+		merge(array_i, i, low, mid, length);
 	}
 }
 
@@ -79,7 +81,7 @@ double mergesortTimed(array<array<int,9>, 9000>& array_i, int i) {
 	auto start = std::chrono::high_resolution_clock::now();
 	
 	// perform the mergesort!
-	mergesort(array_i, i);
+	mergesort(array_i, (i - 1), 0, (i*1000));
 	
 	// stop chrono timer
 	auto finish = std::chrono::high_resolution_clock::now();
