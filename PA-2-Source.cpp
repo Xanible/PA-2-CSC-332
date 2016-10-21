@@ -12,7 +12,7 @@ void randomizeArrays(array<array<int,9>, 9000>& array_i, int i) {
 	// A random number in the range of 1 to 100,000 is assigned.
 	int bound = i * 1000;
 	for(int j=0;j < bound;j++) {
-		array_i[j][i - 1] = rand() % 10000 + 1;
+		array_i[j][i - 1] = rand() % 100000 + 1;
 	}
 }
 
@@ -79,20 +79,6 @@ void mergesort(array<array<int,9>, 9000>& array_i, int i, int l, int r)
         merge(array_i, i, l, m, r);
     }
 }
-
-/*
-void mergesort (array<array<int,9>, 9000>& array_i, int i,
-				int low, int length ) {
-	int mid;
-	if (low < length)
-	{
-		mid = (low + length) / 2;
-		mergesort(array_i, i, low, mid);
-		mergesort(array_i, i, mid + 1, length);
-		merge(array_i, i, low, mid, length);
-	}
-}
-*/
 
 double mergesortTimed(array<array<int,9>, 9000>& array_i, int i) {
 	// start chrono timer
@@ -168,8 +154,8 @@ int main(int argc, char** argv) {
 	test(array_i);
 	
 	cout << "Hello! This is a console application." << endl;
-	cout << "Press 1 to see array first\n"
-		<< "Press 2 to see array second\n"
+	cout << "Press 1 to see array 1\n"
+		<< "Press 2 to see array 2\n"
 		<< "Press 3 to see the third array\n"
 		<< "Press 4 to see the fourth array\n"
 		<< "Press 5 to see the fifth array\n"
