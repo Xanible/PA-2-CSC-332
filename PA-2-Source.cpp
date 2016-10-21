@@ -20,7 +20,7 @@ void merge (array<array<int,9>, 9000>& array_i, int i,
  			const int low, const int mid, const int length)
 {
 	// Variables declaration. 
-	int b [length + 1 - low];
+	int b [length + 1];
 	int h, l, j, k;
 	h = low;
 	l = 0;
@@ -46,7 +46,7 @@ void merge (array<array<int,9>, 9000>& array_i, int i,
 		for (k = j; k <= length; k++)
 		{
 			b[l] = array_i[k][i];
-			i++;
+			l++;
 		}
 	}
 	else
@@ -54,7 +54,7 @@ void merge (array<array<int,9>, 9000>& array_i, int i,
 		for (k = h; k <= mid; k++)
 		{
 			b[l] = array_i[k][i];
-			i++;
+			l++;
 		}
 	}
 	// Prints into the original array
@@ -64,6 +64,23 @@ void merge (array<array<int,9>, 9000>& array_i, int i,
 	}
 }
 
+void mergesort(array<array<int,9>, 9000>& array_i, int i, int l, int r)
+{
+    if (l < r)
+    {
+        // Same as (l+r)/2, but avoids overflow for
+        // large l and h
+        int m = (l+r)/2;
+ 
+        // Sort first and second halves
+        mergesort(array_i, i, l, m);
+        mergesort(array_i, i, m+1, r);
+ 
+        merge(array_i, i, l, m, r);
+    }
+}
+
+/*
 void mergesort (array<array<int,9>, 9000>& array_i, int i,
 				int low, int length ) {
 	int mid;
@@ -75,6 +92,7 @@ void mergesort (array<array<int,9>, 9000>& array_i, int i,
 		merge(array_i, i, low, mid, length);
 	}
 }
+*/
 
 double mergesortTimed(array<array<int,9>, 9000>& array_i, int i) {
 	// start chrono timer
