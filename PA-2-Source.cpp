@@ -153,18 +153,21 @@ int main(int argc, char** argv) {
 	//a small test
 	test(array_i);
 	
-	cout << "Hello! This is a console application." << endl;
-	cout << "Press 1 to see the first array\n"
-		<< "Press 2 to see the second array\n"
-		<< "Press 3 to see the third array\n"
-		<< "Press 4 to see the fourth array\n"
-		<< "Press 5 to see the fifth array\n"
-		<< "Press 6 to see the sixth array\n"
-		<< "Press 7 to see the seventh array\n"
-		<< "Press 8 to see the eighth array\n"
-		<< "Press 9 to see the ninth array\n"
-		<< "Press q to quit"<< endl;	
+	//loop for menu
 	while(1) {
+	cout << "___________________________________________\n"
+		<< "| Hello! Welcome to the mergesort program! |\n"
+		<< "|__________________________________________|\n\n"
+		<< "Input 1 to see the first array:\n\n"
+		<< "Input 2 to see the second array:\n\n"
+		<< "Input 3 to see the third array:\n\n"
+		<< "Input 4 to see the fourth array:\n\n"
+		<< "Input 5 to see the fifth array:\n\n"
+		<< "Input 6 to see the sixth array:\n\n"
+		<< "Input 7 to see the seventh array:\n\n"
+		<< "Input 8 to see the eighth array:\n\n"
+		<< "Input 9 to see the ninth array:\n\n"
+		<< "Input q to quit"<< endl;	
 		cin >> input;
     	if (cin.get() != '\n')  {
         	cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the input stream
@@ -173,12 +176,18 @@ int main(int argc, char** argv) {
 			break;
 		} else if((input - 48) < 10 && (input - 48) > 0) {
 			// Show the unsorted array
-			cout << "Here is the unsorted Array_" << input << '\n';
+			cout << "First we will show the unsorted Array_" << input << '\n';
+			system("PAUSE");
 			printArray(array_i, input - 48);
+			cout << endl;
 			
 			// Perform the mergesort, which will also print the
 			// sorted array and record time
 			times[input - 48] = mergesortTimed(array_i, input - 48);
+			cout << "Now for the sorted Array_" << input << '\n';
+			system("PAUSE");
+			printArray(array_i, input - 48);
+			cout << endl;
 		} else if(input != '\n') {
 			cout << "Unknown command '" << input << "'! Ignoring...\n";
 		}
