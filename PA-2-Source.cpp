@@ -171,7 +171,8 @@ int main(int argc, char** argv) {
 		cin >> input;
     	if (cin.get() != '\n')  {
         	cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the input stream
-        	cout << "Enter a number 1 - 9: \n";
+        	cout << "Unknown command '" << input << "'! Ignoring...\n";
+        	system("PAUSE");
     	} else if(input == 'q' || input == 'Q') {
 			break;
 		} else if((input - 48) < 10 && (input - 48) > 0) {
@@ -190,6 +191,7 @@ int main(int argc, char** argv) {
 			cout << endl;
 		} else if(input != '\n') {
 			cout << "Unknown command '" << input << "'! Ignoring...\n";
+			system("PAUSE");
 		}
 	}
 	
