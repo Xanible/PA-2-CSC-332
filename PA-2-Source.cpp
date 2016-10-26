@@ -2,6 +2,7 @@
 #include <chrono>
 #include <fstream>
 #include <array>
+#include <cmath>
 
 using namespace std;
 
@@ -111,13 +112,25 @@ void printArray(array<array<int,9>, 9000>& array_i, int i) {
 
 // This method will write the text file that will be used
 // for the xlsx file
-void toFile(ofstream &ms_times) {
+void toFile(ofstream &ms_times, array<double, 9>& times) {
 	// input size of the array, nlogn, time spent,
 	// nlogn/time using scientific notation.
 	// output this straight to file with \t inbetween each
+	ms_times << "Input size of n for Array_i\tValue of n*logn\t\t"
+			 <<	"Time Spent(ms)\t\tValue of n*logn/time \n";
+	for(int i = 0; i < 9; i++) {
+		if (times[i] != 0) {
+			ms_times << (i+1)*1000 << "\t\t\t\t";
+			ms_times << ((i+1) * 1000)*log((i+1) * 1000) << "\t\t\t";
+			ms_times << times[i] << "\t\t\t";
+			ms_times << ((i+1) * 1000)*log((i+1) * 1000)/times[i] << "\t\t";
+			ms_times << "\n";
+		}
+	}
 }
 
 // This method was for testing something...
+/*
 void test(array<array<int,9>, 9000>& array_i) {
 	string junk = "test.txt";
 	ofstream test(junk.c_str());
@@ -128,7 +141,7 @@ void test(array<array<int,9>, 9000>& array_i) {
 			 << array_i[i][6] << '\t' << array_i[i][7] << '\t' 
 			 << array_i[i][8] << "\n"; 
 	}
-}
+}*/
 
 
 int main(int argc, char** argv) {
@@ -151,7 +164,7 @@ int main(int argc, char** argv) {
 	char input = 0;
 	
 	//a small test
-	test(array_i);
+	//test(array_i);
 	
 	//loop for menu
 	while(1) {
@@ -184,7 +197,7 @@ int main(int argc, char** argv) {
 			
 			// Perform the mergesort, which will also print the
 			// sorted array and record time
-			times[input - 48] = mergesortTimed(array_i, input - 48);
+			times[input - 49] = mergesortTimed(array_i, input - 48);
 			cout << "Now for the sorted Array_" << input << '\n';
 			system("PAUSE");
 			printArray(array_i, input - 48);
@@ -195,7 +208,7 @@ int main(int argc, char** argv) {
 		}
 	}
 	
-	toFile(ms_times);
+	toFile(ms_times, times);
 	ms_times.close();
 	return 0;
 }
